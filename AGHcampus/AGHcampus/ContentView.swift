@@ -2,8 +2,8 @@ import SwiftUI
 
 struct BuildingView: View {
     let buildingImage: Image? // Zdjęcie budynku
-    let buildingSymbol: String // Symbol budynku
-    let officialName: String? // Oficjalna nazwa budynku
+    let buildingSymbol: String? // Symbol budynku
+    let officialName: String // Oficjalna nazwa budynku
     let address: String // Adres budynku
     let buildingDescription: String // Charakterystyka budynku
     let isAccessibleForWheelchairs: AccessibilityStatus // Dostępność dla wózków inwalidzkich
@@ -14,15 +14,14 @@ struct BuildingView: View {
                 if let image = buildingImage {
                     image
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 200)
+                        .frame(width: 400, height: 200)
                 }
-                Text(buildingSymbol)
+                Text(officialName)
                     .font(.title)
                     .padding()
-                if let name = officialName {
+                if let name = buildingSymbol {
                     Text(name)
-                        .font(.headline)
+                        .font(.title)
                         .padding()
                 }
                 Text(address)
@@ -32,16 +31,18 @@ struct BuildingView: View {
                 Text(buildingDescription)
                     .padding()
                 if isAccessibleForWheelchairs == .limited {
-                    Image(systemName: "wheelchair")
+                    Image("Image 2")
                         .foregroundColor(.gray)
+                        .frame(width:20, height: 20)
                         .padding()
                 } else if isAccessibleForWheelchairs == .yes {
-                    Image(systemName: "wheelchair")
+                    Image(systemName: "figure.roll")
                         .foregroundColor(.black)
+                        .frame(width:20, height: 20)
                         .padding()
                 }
                 // Mapa budynku (wstępnie statyczny obrazek)
-                Image("building_map")
+                Image("Image 3")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 200)
@@ -60,11 +61,11 @@ enum AccessibilityStatus {
 
 struct BuildingView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildingView(buildingImage: Image("building_image"),
-                     buildingSymbol: "Budynek C-2",
-                     officialName: "Dom Studencki Olimp",
-                     address: "Mickiewicza 30",
-                     buildingDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget lectus eu augue eleifend pharetra.",
+        BuildingView(buildingImage: Image("Image 1"),
+                     buildingSymbol: nil,
+                     officialName: "Basen AGH",
+                     address: "Jana Buszka 4, 30-150 Kraków",
+                     buildingDescription: "Basen AGH to miejsce rekreacji i sportu znajdujące się na terenie Akademii Górniczo-Hutniczej w Krakowie. ",
                      isAccessibleForWheelchairs: .yes)
     }
 }
