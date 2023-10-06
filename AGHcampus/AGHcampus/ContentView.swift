@@ -1,86 +1,76 @@
-//
-//  ContentView.swift
-//  AGHcampus
-//
-//  Created by Guest User on 06/10/2023.
-//
-
 import SwiftUI
-import CoreData
 
-struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+struct BuildingView: View {
+    let buildingImage: Image? // Zdjęcie budynku
+    let buildingSymbol: String // Symbol budynku
+    let officialName: String? // Oficjalna nazwa budynku
+    let address: String // Adres budynku
+    let buildingDescription: String // Charakterystyka budynku
+    let isAccessibleForWheelchairs: AccessibilityStatus // Dostępność dla wózków inwalidzkich
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
+        ScrollView {
+            VStack {
+                if let image = buildingImage {
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 200)
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+                Text(buildingSymbol)
+                    .font(.title)
+                    .padding()
+                if let name = officialName {
+                    Text(name)
+                        .font(.headline)
+                        .padding()
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+                Text(address)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .padding()
+                Text(buildingDescription)
+                    .padding()
+                if isAccessibleForWheelchairs == .limited {
+                    Image(systemName: "wheelchair")
+                        .foregroundColor(.gray)
+                        .padding()
+                } else if isAccessibleForWheelchairs == .yes {
+                    Image(systemName: "wheelchair")
+                        .foregroundColor(.black)
+                        .padding()
                 }
-            }
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                // Mapa budynku (wstępnie statyczny obrazek)
+                Image("building_map")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 200)
+                    .padding()
             }
         }
+        .navigationTitle("BuildingView")
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
+// Enum reprezentujący dostępność dla wózków inwalidzkich
+enum AccessibilityStatus {
+    case limited
+    case yes
+}
 
-#Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+struct BuildingView_Previews: PreviewProvider {
+    static var previews: some View {
+        BuildingView(buildingImage: Image("building_image"),
+                     buildingSymbol: "Budynek C-2",
+                     officialName: "Dom Studencki Olimp",
+                     address: "Mickiewicza 30",
+                     buildingDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget lectus eu augue eleifend pharetra.",
+                     isAccessibleForWheelchairs: .yes)
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Hello, world!@*/Text("Hello, world!")/*@END_MENU_TOKEN@*/
+    }
 }
