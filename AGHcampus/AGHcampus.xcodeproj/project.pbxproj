@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC09B6882AD9335E00DCE6D3 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC09B6872AD9335E00DCE6D3 /* Building.swift */; };
+		AC09B68A2AD93AB700DCE6D3 /* BuildingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC09B6892AD93AB700DCE6D3 /* BuildingsList.swift */; };
 		ACBF30C42ACFFB2E009562D2 /* AGHcampusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF30C32ACFFB2E009562D2 /* AGHcampusApp.swift */; };
 		ACBF30C62ACFFB2E009562D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF30C52ACFFB2E009562D2 /* ContentView.swift */; };
 		ACBF30C82ACFFB2F009562D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACBF30C72ACFFB2F009562D2 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC09B6872AD9335E00DCE6D3 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
+		AC09B6892AD93AB700DCE6D3 /* BuildingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsList.swift; sourceTree = "<group>"; };
 		ACBF30C02ACFFB2E009562D2 /* AGHcampus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGHcampus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBF30C32ACFFB2E009562D2 /* AGHcampusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGHcampusApp.swift; sourceTree = "<group>"; };
 		ACBF30C52ACFFB2E009562D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				ACBF30CC2ACFFB2F009562D2 /* Persistence.swift */,
 				ACBF30CE2ACFFB2F009562D2 /* AGHcampus.xcdatamodeld */,
 				ACBF30C92ACFFB2F009562D2 /* Preview Content */,
+				AC09B6872AD9335E00DCE6D3 /* Building.swift */,
+				AC09B6892AD93AB700DCE6D3 /* BuildingsList.swift */,
 			);
 			path = AGHcampus;
 			sourceTree = "<group>";
@@ -265,8 +271,10 @@
 			files = (
 				ACBF30CD2ACFFB2F009562D2 /* Persistence.swift in Sources */,
 				ACBF30C62ACFFB2E009562D2 /* ContentView.swift in Sources */,
+				AC09B6882AD9335E00DCE6D3 /* Building.swift in Sources */,
 				ACBF30C42ACFFB2E009562D2 /* AGHcampusApp.swift in Sources */,
 				ACBF30D02ACFFB2F009562D2 /* AGHcampus.xcdatamodeld in Sources */,
+				AC09B68A2AD93AB700DCE6D3 /* BuildingsList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

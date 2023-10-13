@@ -48,25 +48,17 @@ struct BuildingView: View {
                     .frame(height: 200)
                     .padding()
             }
+//            frame(maxHeight: .infinity)
         }
         .navigationTitle("BuildingView")
     }
 }
 
-// Enum reprezentujący dostępność dla wózków inwalidzkich
-enum AccessibilityStatus {
-    case limited
-    case yes
-}
+
 
 struct BuildingView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildingView(buildingImage: Image("Image 1"),
-                     buildingSymbol: nil,
-                     officialName: "Basen AGH",
-                     address: "Jana Buszka 4, 30-150 Kraków",
-                     buildingDescription: "Basen AGH to miejsce rekreacji i sportu znajdujące się na terenie Akademii Górniczo-Hutniczej w Krakowie. ",
-                     isAccessibleForWheelchairs: .yes)
+        BuildingListView(buildings: BuildingData.buildings)
     }
 }
 
