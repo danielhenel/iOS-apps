@@ -18,6 +18,7 @@
 		ACBF30DA2ACFFB30009562D2 /* AGHcampusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF30D92ACFFB30009562D2 /* AGHcampusTests.swift */; };
 		ACBF30E42ACFFB30009562D2 /* AGHcampusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF30E32ACFFB30009562D2 /* AGHcampusUITests.swift */; };
 		ACBF30E62ACFFB30009562D2 /* AGHcampusUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF30E52ACFFB30009562D2 /* AGHcampusUITestsLaunchTests.swift */; };
+		ACEF29D02AE26EFA0082D1C5 /* BuildingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF29CF2AE26EFA0082D1C5 /* BuildingCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		ACBF30DF2ACFFB30009562D2 /* AGHcampusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AGHcampusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBF30E32ACFFB30009562D2 /* AGHcampusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGHcampusUITests.swift; sourceTree = "<group>"; };
 		ACBF30E52ACFFB30009562D2 /* AGHcampusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGHcampusUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		ACEF29CF2AE26EFA0082D1C5 /* BuildingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,8 @@
 				ACBF30C32ACFFB2E009562D2 /* AGHcampusApp.swift */,
 				ACBF30C52ACFFB2E009562D2 /* ContentView.swift */,
 				ACBF30C72ACFFB2F009562D2 /* Assets.xcassets */,
+				ACEF29D12AE26F910082D1C5 /* Data */,
+				ACEF29CE2AE26EC10082D1C5 /* Views */,
 				ACBF30CC2ACFFB2F009562D2 /* Persistence.swift */,
 				ACBF30CE2ACFFB2F009562D2 /* AGHcampus.xcdatamodeld */,
 				ACBF30C92ACFFB2F009562D2 /* Preview Content */,
@@ -137,6 +141,21 @@
 				ACBF30E52ACFFB30009562D2 /* AGHcampusUITestsLaunchTests.swift */,
 			);
 			path = AGHcampusUITests;
+			sourceTree = "<group>";
+		};
+		ACEF29CE2AE26EC10082D1C5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ACEF29CF2AE26EFA0082D1C5 /* BuildingCardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ACEF29D12AE26F910082D1C5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +292,7 @@
 				ACBF30C62ACFFB2E009562D2 /* ContentView.swift in Sources */,
 				AC09B6882AD9335E00DCE6D3 /* Building.swift in Sources */,
 				ACBF30C42ACFFB2E009562D2 /* AGHcampusApp.swift in Sources */,
+				ACEF29D02AE26EFA0082D1C5 /* BuildingCardView.swift in Sources */,
 				ACBF30D02ACFFB2F009562D2 /* AGHcampus.xcdatamodeld in Sources */,
 				AC09B68A2AD93AB700DCE6D3 /* BuildingsList.swift in Sources */,
 			);
