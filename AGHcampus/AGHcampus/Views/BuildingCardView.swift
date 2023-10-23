@@ -9,11 +9,12 @@ struct BuildingCardView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            // Symbol
             Text("Budynek " + building.symbol)
                 .font(.headline)
                 .accessibilityAddTraits(.isHeader)
-            Spacer()
             HStack {
+                // Official name (if exists)
                 if let name = building.officialName{
                     Text(name)
                         .font(.headline)
@@ -22,7 +23,7 @@ struct BuildingCardView: View {
                 
                 // Accessibility for wheel chairs
                 if building.accessibilityForWheelchairs == .limited {
-                    Image("Image 2")
+                    Image("accessibility")
                         .foregroundColor(.gray)
                         .frame(width:20, height: 20)
                         .padding()
@@ -35,12 +36,12 @@ struct BuildingCardView: View {
                 
                 // Wi-Fi
                 if building.hasWiFi {
-                    Image("Image 2")
+                    Image(systemName: "wifi")
                         .foregroundColor(.gray)
                         .frame(width:20, height: 20)
                         .padding()
                 } else {
-                    Image(systemName: "figure.roll")
+                    Image(systemName: "wifi.slash")
                         .foregroundColor(.black)
                         .frame(width:20, height: 20)
                         .padding()

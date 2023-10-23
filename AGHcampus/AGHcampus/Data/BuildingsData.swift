@@ -11,11 +11,13 @@ enum AccessibilityStatus {
 }
 
 enum BuildingType: String {
-    case academic = "Academic"
-    case residential = "Residential"
+    case auditorium = "Auditorium"
+    case student_dormitory = "Student Dormitory"
     case office = "Office"
     case other = "Other"
-    case university = "University"
+    case labolatory = "Labolatory"
+    case sport_object = "Sport Object"
+    case library = "Library"
 }
 
 struct Building {
@@ -41,7 +43,7 @@ struct BuildingData {
             hasWiFi: false,
             accessibilityForWheelchairs: .yes,
             shape: [MKPolygon()],
-            type: .residential
+            type: .sport_object
             ),
         Building(
             symbol: "A-0",
@@ -52,7 +54,7 @@ struct BuildingData {
             hasWiFi: true,
             accessibilityForWheelchairs: .yes,
             shape: [MKPolygon()],
-            type: .university
+            type: .auditorium
         ),
         Building(
             symbol: "B-2",
@@ -63,7 +65,7 @@ struct BuildingData {
             hasWiFi: true,
             accessibilityForWheelchairs: .no,
             shape: [MKPolygon()],
-            type: .office
+            type: .auditorium
         ),
         Building(
             symbol: "C-3",
@@ -74,7 +76,7 @@ struct BuildingData {
             hasWiFi: false,
             accessibilityForWheelchairs: .limited,
             shape: [MKPolygon()],
-            type: .other
+            type: .auditorium
         )
     ]
 }
