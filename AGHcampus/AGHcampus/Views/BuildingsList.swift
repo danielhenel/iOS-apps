@@ -1,10 +1,3 @@
-//
-//  BuildingsList.swift
-//  AGHcampus
-//
-//  Created by Guest User on 13/10/2023.
-//
-
 import Foundation
 
 import SwiftUI
@@ -58,15 +51,15 @@ struct BuildingDetailView: View {
     }
 }
 
-struct BuildingListView: View {
-    let buildings: [Building]
-
-    var body: some View {
-        List(buildings.map { HashableBuilding(building: $0) }, id: \.self) { hashableBuilding in
-            NavigationLink(destination: BuildingDetailView(building: hashableBuilding.building)) {
-                BuildingCardView(building: hashableBuilding.building)
-            }
-        }
-        .navigationTitle("Lista Budynków")
-    }
-}
+//struct BuildingListView: View {
+//    let buildings: [Building]
+//
+//    var body: some View {
+//        List(buildings.map { HashableBuilding(building: $0) }, id: \.self) { hashableBuilding in
+//            NavigationLink(destination: BuildingDetailView(building: hashableBuilding.building)) {
+//                BuildingCardView(building: hashableBuilding.building)
+//            }
+//        }
+//        .navigationTitle("Lista Budynków")
+//    }
+//}

@@ -1,10 +1,3 @@
-//
-//  BuildingCardView.swift
-//  AGHcampus
-//
-//  Created by Guest User on 20/10/2023.
-//
-
 import Foundation
 import SwiftUI
 import MapKit
@@ -12,39 +5,59 @@ import MapKit
 struct BuildingCardView: View {
     let building: Building
     
+
+    
     var body: some View {
-        let backgroundColor = BuildingTheme.backgroundColor(for: building.type)
-        let textColor = BuildingTheme.textColor(for: backgroundColor)
-        let wheelchairIconColor = BuildingTheme.wheelchairIconColor(for: building.accessibilityForWheelchairs)
-        let wifiIconColor = BuildingTheme.wifiIconColor(for: building.hasWiFi)
-        
-        ZStack {
-            backgroundColor
-                .cornerRadius(10)
-                .frame(height: 200)
-            VStack {
-                Text(building.symbol)
-                    .font(.title)
-                    .foregroundColor(textColor)
-                if let officialName = building.officialName {
-                    Text(officialName)
+        VStack(alignment: .leading) {
+            Text("Budynek " + building.symbol)
+                .font(.headline)
+                .accessibilityAddTraits(.isHeader)
+            Spacer()
+            HStack {
+                if let name = building.officialName{
+                    Text(name)
                         .font(.headline)
-                        .foregroundColor(textColor)
+                        .accessibilityAddTraits(.isHeader)
                 }
-                HStack {
-                    Image(systemName: "wifi")
-                        .foregroundColor(wifiIconColor)
-                    Image(systemName: "wheelchair")
-                        .foregroundColor(wheelchairIconColor)
+                
+                // Accessibility for wheel chairs
+                if building.accessibilityForWheelchairs == .limited {
+                    Image("Image 2")
+                        .foregroundColor(.gray)
+                        .frame(width:20, height: 20)
+                        .padding()
+                } else if building.accessibilityForWheelchairs == .yes {
+                    Image(systemName: "figure.roll")
+                        .foregroundColor(.black)
+                        .frame(width:20, height: 20)
+                        .padding()
+                }
+                
+                // Wi-Fi
+                if building.hasWiFi {
+                    Image("Image 2")
+                        .foregroundColor(.gray)
+                        .frame(width:20, height: 20)
+                        .padding()
+                } else {
+                    Image(systemName: "figure.roll")
+                        .foregroundColor(.black)
+                        .frame(width:20, height: 20)
+                        .padding()
                 }
             }
+            .font(.caption)
         }
         .padding()
+//        .foregroundColor(scrum.theme.accentColor)
     }
+    
 }
 
 struct BuildingCardView_Previews: PreviewProvider {
+    static var example_building = BuildingData.buildings[0]
     static var previews: some View {
-        BuildingCardView(building:BuildingData.buildings[0])
+        BuildingCardView(building: example_building)
+            .previewLayout(.fixed(width: 400, height: 60))
     }
 }

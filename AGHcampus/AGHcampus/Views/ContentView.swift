@@ -55,12 +55,12 @@ struct BuildingView: View {
 }
 
 
-
-struct BuildingView_Previews: PreviewProvider {
-    static var previews: some View {
-        BuildingListView(buildings: BuildingData.buildings)
-    }
-}
+//
+//struct BuildingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BuildingListView(buildings: BuildingData.buildings)
+//    }
+//}
 
 struct ContentView: View {
     var body: some View {

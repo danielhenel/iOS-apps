@@ -1,23 +1,15 @@
-//
-//  Building.swift
-//  AGHcampus
-//
-//  Created by Guest User on 13/10/2023.
-//
 
-//import Foundation
-//
+import Foundation
 import SwiftUI
 import MapKit
 
-// Enum reprezentujący dostępność dla wózków inwalidzkich
+
 enum AccessibilityStatus {
     case limited
     case yes
     case no
 }
 
-// Enum reprezentujący rodzaj budynku
 enum BuildingType: String {
     case academic = "Academic"
     case residential = "Residential"
@@ -26,11 +18,10 @@ enum BuildingType: String {
     case university = "University"
 }
 
-struct Building: Identifiable {
-    let id = UUID()
+struct Building {
     let symbol: String
     let officialName: String?
-    let buildingImage: Image?
+    let buildingImage: Image
     let address: String
     let buildingDescription: String
     let hasWiFi: Bool
@@ -39,19 +30,6 @@ struct Building: Identifiable {
     let type: BuildingType
 }
 
-struct HashableBuilding: Hashable {
-    let building: Building
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(building.id)
-    }
-    
-    static func == (lhs: HashableBuilding, rhs: HashableBuilding) -> Bool {
-        return lhs.building.id == rhs.building.id
-    }
-}
-
-// Przykładowe dane budynków
 struct BuildingData {
     static let buildings: [Building] = [
         Building(
