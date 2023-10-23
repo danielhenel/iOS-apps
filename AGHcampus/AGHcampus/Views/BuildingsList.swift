@@ -27,10 +27,21 @@ struct BuildingsListView: View {
     let buildings: [Building]
 
     var body: some View {
-        List(buildings, id: \.symbol) { building in
-            let cardColor = BuildingTheme.backgroundColor(buildingType: building.type);
-            BuildingCardView(building: building)
+        NavigationStack {
+            List(buildings) { building in
+                NavigationLink(destination: Text(building.symbol)){
+                let cardColor = BuildingTheme.backgroundColor(buildingType: building.type);
+                BuildingCardView(building: building)
+                }
                 .listRowBackground(cardColor)
+            }
+            .navigationTitle("AGH Campus")
+            .toolbar {
+                Button(action: {}) {
+                    Image(systemName: "plus")
+                }
+                .accessibilityLabel("New Building")
+            }
         }
     }
 }

@@ -30,6 +30,7 @@ struct Building {
     let accessibilityForWheelchairs: AccessibilityStatus
     let shape: [MKPolygon]
     let type: BuildingType
+    let favourite: Bool?
 }
 
 struct BuildingData {

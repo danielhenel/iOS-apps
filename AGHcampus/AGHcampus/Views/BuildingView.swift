@@ -1,26 +1,35 @@
-import Foundation
 import SwiftUI
-import MapKit
 
-struct BuildingCardView: View {
+struct BuildingView: View {
     let building: Building
-    
 
-    
     var body: some View {
-        VStack(alignment: .leading) {
-            // Symbol
-            Text("Budynek " + building.symbol)
-                .font(.headline)
-                .accessibilityAddTraits(.isHeader)
-            HStack {
-                // Official name (if exists)
-                if let name = building.officialName{
+        ScrollView {
+            VStack {
+                // Building Image
+                building.buildingImage
+                    .resizable()
+                    .frame(width: 400, height: 200)
+                // Symbol
+                Text(building.symbol)
+                    .font(.title)
+                    .padding()
+                // Official Name
+                if let name = building.officialName {
                     Text(name)
-                        .font(.headline)
-                        .accessibilityAddTraits(.isHeader)
+                        .font(.title)
+                        .padding()
                 }
-                
+                // Address
+                Text(building.address)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .padding()
+
+                // Description
+                Text(building.buildingDescription)
+                    .padding()
+
                 // Accessibility for wheel chairs
                 if building.accessibilityForWheelchairs == .limited {
                     Image("accessibility")
@@ -33,7 +42,7 @@ struct BuildingCardView: View {
                         .frame(width:20, height: 20)
                         .padding()
                 }
-                
+
                 // Wi-Fi
                 if building.hasWiFi {
                     Image(systemName: "wifi")
@@ -59,19 +68,21 @@ struct BuildingCardView: View {
                         .frame(width:20, height: 20)
                         .padding()
                 }
+
+                // Map
+                Image(building.buildingImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 200)
+                    .padding()
             }
-            .font(.caption)
         }
-        .padding()
-//        .foregroundColor(scrum.theme.accentColor)
     }
-    
 }
 
-struct BuildingCardView_Previews: PreviewProvider {
-    static var example_building = BuildingData.buildings[0]
-    static var previews: some View {
-        BuildingCardView(building: example_building)
-            .previewLayout(.fixed(width: 400, height: 60))
+struct BuildingView_Previews: PreviewProvider {
+    tatic var example_building = BuildingData.buildings[0]
+    var previews: some View {
+        BuildingView(building: example_building)
     }
 }
