@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		292E3A4A2AE6DFBC00105E79 /* BuildingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292E3A492AE6DFBC00105E79 /* BuildingsData.swift */; };
+		2970D26B2AE70E2900AFC233 /* SourceOfTruth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970D26A2AE70E2900AFC233 /* SourceOfTruth.swift */; };
+		2970D26D2AE70F0500AFC233 /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970D26C2AE70F0500AFC233 /* BuildingView.swift */; };
 		AC09B68A2AD93AB700DCE6D3 /* BuildingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC09B6892AD93AB700DCE6D3 /* BuildingsList.swift */; };
 		ACBF30C42ACFFB2E009562D2 /* AGHcampusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF30C32ACFFB2E009562D2 /* AGHcampusApp.swift */; };
-		ACBF30C62ACFFB2E009562D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF30C52ACFFB2E009562D2 /* ContentView.swift */; };
 		ACBF30C82ACFFB2F009562D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACBF30C72ACFFB2F009562D2 /* Assets.xcassets */; };
 		ACBF30CB2ACFFB2F009562D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACBF30CA2ACFFB2F009562D2 /* Preview Assets.xcassets */; };
 		ACBF30CD2ACFFB2F009562D2 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF30CC2ACFFB2F009562D2 /* Persistence.swift */; };
@@ -40,10 +41,11 @@
 
 /* Begin PBXFileReference section */
 		292E3A492AE6DFBC00105E79 /* BuildingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsData.swift; sourceTree = "<group>"; };
+		2970D26A2AE70E2900AFC233 /* SourceOfTruth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceOfTruth.swift; sourceTree = "<group>"; };
+		2970D26C2AE70F0500AFC233 /* BuildingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
 		AC09B6892AD93AB700DCE6D3 /* BuildingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsList.swift; sourceTree = "<group>"; };
 		ACBF30C02ACFFB2E009562D2 /* AGHcampus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGHcampus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBF30C32ACFFB2E009562D2 /* AGHcampusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGHcampusApp.swift; sourceTree = "<group>"; };
-		ACBF30C52ACFFB2E009562D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ACBF30C72ACFFB2F009562D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACBF30CA2ACFFB2F009562D2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ACBF30CC2ACFFB2F009562D2 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -143,8 +145,8 @@
 		ACEF29CE2AE26EC10082D1C5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2970D26C2AE70F0500AFC233 /* BuildingView.swift */,
 				AC09B6892AD93AB700DCE6D3 /* BuildingsList.swift */,
-				ACBF30C52ACFFB2E009562D2 /* ContentView.swift */,
 				ACEF29CF2AE26EFA0082D1C5 /* BuildingCardView.swift */,
 			);
 			path = Views;
@@ -153,6 +155,7 @@
 		ACEF29D12AE26F910082D1C5 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				2970D26A2AE70E2900AFC233 /* SourceOfTruth.swift */,
 				292E3A492AE6DFBC00105E79 /* BuildingsData.swift */,
 			);
 			path = Data;
@@ -289,8 +292,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACBF30CD2ACFFB2F009562D2 /* Persistence.swift in Sources */,
+				2970D26D2AE70F0500AFC233 /* BuildingView.swift in Sources */,
 				292E3A4A2AE6DFBC00105E79 /* BuildingsData.swift in Sources */,
-				ACBF30C62ACFFB2E009562D2 /* ContentView.swift in Sources */,
+				2970D26B2AE70E2900AFC233 /* SourceOfTruth.swift in Sources */,
 				ACBF30C42ACFFB2E009562D2 /* AGHcampusApp.swift in Sources */,
 				ACEF29D02AE26EFA0082D1C5 /* BuildingCardView.swift in Sources */,
 				ACBF30D02ACFFB2F009562D2 /* AGHcampus.xcdatamodeld in Sources */,

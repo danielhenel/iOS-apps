@@ -1,10 +1,10 @@
 struct SourceOfTruth {
 
-    var favourites: [String: Bool] = [:]
+    static var favourites: [String: Bool] = [:]
+    static var buildings: [Building] = BuildingData.buildings
 
-    static func initSharedAttributes(buildings: [Building]) {
+    static func initSharedAttributes() {
         for building in buildings{
-            building.favourite = false;
             favourites[building.symbol] = false;
         }
     }

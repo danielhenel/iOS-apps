@@ -57,20 +57,23 @@ struct BuildingView: View {
                 }
 
                 // Favourite
-                if building.favourite {
-                    Image(systemName: "heart.fill")
-                        .foregroundColor(.gray)
-                        .frame(width:20, height: 20)
-                        .padding()
-                } else {
-                    Image(systemName: "heart")
-                        .foregroundColor(.black)
-                        .frame(width:20, height: 20)
-                        .padding()
+                if let favourite = building.favourite {
+                    if favourite {
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.gray)
+                            .frame(width:20, height: 20)
+                            .padding()
+                    }
+                    else {
+                        Image(systemName: "heart")
+                            .foregroundColor(.black)
+                            .frame(width:20, height: 20)
+                            .padding()
+                    }
                 }
 
                 // Map
-                Image(building.buildingImage)
+                building.buildingImage
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 200)
@@ -81,8 +84,8 @@ struct BuildingView: View {
 }
 
 struct BuildingView_Previews: PreviewProvider {
-    tatic var example_building = BuildingData.buildings[0]
-    var previews: some View {
+    static var example_building = BuildingData.buildings[0]
+    static var previews: some View {
         BuildingView(building: example_building)
     }
 }

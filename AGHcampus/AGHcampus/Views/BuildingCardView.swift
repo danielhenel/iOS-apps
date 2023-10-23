@@ -46,18 +46,21 @@ struct BuildingCardView: View {
                         .frame(width:20, height: 20)
                         .padding()
                 }
-
+                
                 // Favourite
-                if building.favourite {
-                    Image(systemName: "heart.fill")
-                        .foregroundColor(.gray)
-                        .frame(width:20, height: 20)
-                        .padding()
-                } else {
-                    Image(systemName: "heart")
-                        .foregroundColor(.black)
-                        .frame(width:20, height: 20)
-                        .padding()
+                if let favourite = building.favourite {
+                    if favourite {
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.gray)
+                            .frame(width:20, height: 20)
+                            .padding()
+                    }
+                    else {
+                        Image(systemName: "heart")
+                            .foregroundColor(.black)
+                            .frame(width:20, height: 20)
+                            .padding()
+                    }
                 }
             }
             .font(.caption)

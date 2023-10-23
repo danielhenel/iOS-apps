@@ -25,15 +25,14 @@ struct BuildingTheme {
 
 struct BuildingsListView: View {
     let buildings: [Building]
-
     var body: some View {
         NavigationStack {
-            List(buildings) { building in
-                NavigationLink(destination: Text(building.symbol)){
-                let cardColor = BuildingTheme.backgroundColor(buildingType: building.type);
+            List(buildings, id: \.symbol) { building in
+                NavigationLink(destination:
+                BuildingView(building: building)){
                 BuildingCardView(building: building)
                 }
-                .listRowBackground(cardColor)
+                .listRowBackground(BuildingTheme.backgroundColor(buildingType: building.type))
             }
             .navigationTitle("AGH Campus")
             .toolbar {

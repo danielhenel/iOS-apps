@@ -44,7 +44,8 @@ struct BuildingData {
             hasWiFi: false,
             accessibilityForWheelchairs: .yes,
             shape: [MKPolygon()],
-            type: .sport_object
+            type: .sport_object,
+            favourite: nil
             ),
         Building(
             symbol: "A-0",
@@ -55,7 +56,8 @@ struct BuildingData {
             hasWiFi: true,
             accessibilityForWheelchairs: .yes,
             shape: [MKPolygon()],
-            type: .auditorium
+            type: .auditorium,
+            favourite: nil
         ),
         Building(
             symbol: "B-2",
@@ -66,7 +68,8 @@ struct BuildingData {
             hasWiFi: true,
             accessibilityForWheelchairs: .no,
             shape: [MKPolygon()],
-            type: .auditorium
+            type: .auditorium,
+            favourite: nil
         ),
         Building(
             symbol: "C-3",
@@ -77,7 +80,8 @@ struct BuildingData {
             hasWiFi: false,
             accessibilityForWheelchairs: .limited,
             shape: [MKPolygon()],
-            type: .auditorium
+            type: .auditorium,
+            favourite: nil
         )
     ]
 }
