@@ -1,10 +1,3 @@
-//
-//  AGHcampusUITestsLaunchTests.swift
-//  AGHcampusUITests
-//
-//  Created by Guest User on 06/10/2023.
-//
-
 import XCTest
 
 final class AGHcampusUITestsLaunchTests: XCTestCase {
