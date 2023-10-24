@@ -47,7 +47,7 @@ struct BuildingData {
             accessibilityForWheelchairs: .yes,
             shape: [MKPolygon()],
             type: .sport_object,
-            favourite: nil
+            favourite: false
             ),
         Building(
             symbol: "A-0",
@@ -60,7 +60,7 @@ struct BuildingData {
             accessibilityForWheelchairs: .yes,
             shape: [MKPolygon()],
             type: .auditorium,
-            favourite: nil
+            favourite: true
         ),
         Building(
             symbol: "B-2",
@@ -73,7 +73,7 @@ struct BuildingData {
             accessibilityForWheelchairs: .no,
             shape: [MKPolygon()],
             type: .auditorium,
-            favourite: nil
+            favourite: false
         ),
         Building(
             symbol: "C-3",
@@ -86,7 +86,7 @@ struct BuildingData {
             accessibilityForWheelchairs: .limited,
             shape: [MKPolygon()],
             type: .auditorium,
-            favourite: nil
+            favourite: true
         ),
         Building(
             symbol: "D-17",
@@ -99,7 +99,7 @@ struct BuildingData {
             accessibilityForWheelchairs: .yes,
             shape: [MKPolygon()],
             type: .labolatory,
-            favourite: nil
+            favourite: false
         ),
         Building(
             symbol: "DS-14",
@@ -112,7 +112,7 @@ struct BuildingData {
             accessibilityForWheelchairs: .no,
             shape: [MKPolygon()],
             type: .student_dormitory,
-            favourite: nil
+            favourite: true
         )
     ]
 }
