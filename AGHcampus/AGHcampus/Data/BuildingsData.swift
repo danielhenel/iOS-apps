@@ -24,6 +24,7 @@ struct Building {
     let symbol: String
     let officialName: String?
     let buildingImage: Image
+    let buildingImage: Map
     let address: String
     let buildingDescription: String
     let hasWiFi: Bool
@@ -36,9 +37,10 @@ struct Building {
 struct BuildingData {
     static let buildings: [Building] = [
         Building(
-            symbol: "Basen AGH",
+            symbol: "U-11",
             officialName: "Basen AGH",
             buildingImage: Image("Image 1"),
+            buildingMap: Image("Image 2"),
             address: "Jana Buszka 4, 30-150 Kraków",
             buildingDescription: "Basen AGH to miejsce rekreacji i sportu znajdujące się na terenie Akademii Górniczo-Hutniczej w Krakowie.",
             hasWiFi: false,
@@ -51,8 +53,9 @@ struct BuildingData {
             symbol: "A-0",
             officialName: "Budynek glowny",
             buildingImage: Image("A0"),
+            buildingMap: Image("A0_map"),
             address: "Mickiewicza 30",
-            buildingDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            buildingDescription: "Budynek Główny uwieńczony jest figurą Św. Barbary na dachu.",
             hasWiFi: true,
             accessibilityForWheelchairs: .yes,
             shape: [MKPolygon()],
@@ -63,6 +66,7 @@ struct BuildingData {
             symbol: "B-2",
             officialName: "Budynek B-2",
             buildingImage: Image("B2"),
+            buildingMap: Image("B2_map"),
             address: "Kościuszki 15",
             buildingDescription: "B-2 to nowoczesny obiekt, który oferuje przestronne sale wykladowe. Znajduje się w dogodnej lokalizacji w centrum miasta.",
             hasWiFi: true,
@@ -75,12 +79,39 @@ struct BuildingData {
             symbol: "C-3",
             officialName: "Budynek C-3",
             buildingImage: Image("C3"),
+            buildingMap: Image("C3_map"),
             address: "Nowa 5",
             buildingDescription: "C-3 to stylowy obiekt, który oferuje przestronne sale wykladowe.",
             hasWiFi: false,
             accessibilityForWheelchairs: .limited,
             shape: [MKPolygon()],
             type: .auditorium,
+            favourite: nil
+        ),
+        Building(
+            symbol: "D-17",
+            officialName: "Centrum Informatyki",
+            buildingImage: Image("D17"),
+            buildingMap: Image("D17_map"),
+            address: "Kawiory 21",
+            buildingDescription: "Centrum Informatyki jest nowoczesnym budykiem, wyposażonym w najnowsze techologie.",
+            hasWiFi: true,
+            accessibilityForWheelchairs: .yes,
+            shape: [MKPolygon()],
+            type: .labolatory,
+            favourite: nil
+        ),
+        Building(
+            symbol: "DS-14",
+            officialName: "Dom Studencki Kapitol",
+            buildingImage: Image("DS14"),
+            buildingMap: Image("DS14_map"),
+            address: "Nowa 5",
+            buildingDescription: "Legendarny akademik w samym centrum miasteczka studenckiego.",
+            hasWiFi: false,
+            accessibilityForWheelchairs: .no,
+            shape: [MKPolygon()],
+            type: .student_dormitory,
             favourite: nil
         )
     ]

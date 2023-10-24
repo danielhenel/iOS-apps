@@ -26,20 +26,22 @@ struct BuildingTheme {
 struct BuildingsListView: View {
     let buildings: [Building]
     var body: some View {
-        NavigationStack {
-            List(buildings, id: \.symbol) { building in
-                NavigationLink(destination:
-                BuildingView(building: building)){
-                BuildingCardView(building: building)
+        ScrollView {
+            NavigationStack {
+                List(buildings, id: \.symbol) { building in
+                    NavigationLink(destination:
+                    BuildingView(building: building)){
+                    BuildingCardView(building: building)
+                    }
+                    .listRowBackground(BuildingTheme.backgroundColor(buildingType: building.type))
                 }
-                .listRowBackground(BuildingTheme.backgroundColor(buildingType: building.type))
-            }
-            .navigationTitle("AGH Campus")
-            .toolbar {
-                Button(action: {}) {
-                    Image(systemName: "plus")
+                .navigationTitle("AGH Campus")
+                .toolbar {
+                    Button(action: {}) {
+                        Image(systemName: "plus")
+                    }
+                    .accessibilityLabel("New Building")
                 }
-                .accessibilityLabel("New Building")
             }
         }
     }

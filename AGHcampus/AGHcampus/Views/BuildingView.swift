@@ -32,7 +32,7 @@ struct BuildingView: View {
 
                 // Accessibility for wheel chairs
                 if building.accessibilityForWheelchairs == .limited {
-                    Image("accessibility")
+                    Image("figure.roll")
                         .foregroundColor(.gray)
                         .frame(width:20, height: 20)
                         .padding()
@@ -79,6 +79,7 @@ struct BuildingView: View {
                     .frame(height: 200)
                     .padding()
             }
+            .padding(10)
         }
     }
 }
