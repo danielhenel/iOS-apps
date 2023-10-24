@@ -4,7 +4,7 @@ struct BuildingView: View {
     let building: Building
 
     var body: some View {
-        ScrollView {
+//        ScrollView {
             VStack {
                 // Building Image
                 building.buildingImage
@@ -73,14 +73,14 @@ struct BuildingView: View {
                 }
 
                 // Map
-                building.buildingImage
+                building.buildingMap
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 200)
                     .padding()
             }
             .padding(10)
-        }
+//        }
     }
 }
 

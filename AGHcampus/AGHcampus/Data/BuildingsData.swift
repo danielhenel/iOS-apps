@@ -24,7 +24,7 @@ struct Building {
     let symbol: String
     let officialName: String?
     let buildingImage: Image
-    let buildingImage: Map
+    let buildingMap: Image
     let address: String
     let buildingDescription: String
     let hasWiFi: Bool
@@ -39,8 +39,8 @@ struct BuildingData {
         Building(
             symbol: "U-11",
             officialName: "Basen AGH",
-            buildingImage: Image("Image 1"),
-            buildingMap: Image("Image 2"),
+            buildingImage: Image("U11"),
+            buildingMap: Image("U11_map"),
             address: "Jana Buszka 4, 30-150 Kraków",
             buildingDescription: "Basen AGH to miejsce rekreacji i sportu znajdujące się na terenie Akademii Górniczo-Hutniczej w Krakowie.",
             hasWiFi: false,
@@ -64,7 +64,7 @@ struct BuildingData {
         ),
         Building(
             symbol: "B-2",
-            officialName: "Budynek B-2",
+            officialName: "Wydzial EAIiIB",
             buildingImage: Image("B2"),
             buildingMap: Image("B2_map"),
             address: "Kościuszki 15",
@@ -77,7 +77,7 @@ struct BuildingData {
         ),
         Building(
             symbol: "C-3",
-            officialName: "Budynek C-3",
+            officialName: "Budynek miedzywydzialowy",
             buildingImage: Image("C3"),
             buildingMap: Image("C3_map"),
             address: "Nowa 5",

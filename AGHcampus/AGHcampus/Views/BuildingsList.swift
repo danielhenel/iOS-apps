@@ -26,13 +26,14 @@ struct BuildingTheme {
 struct BuildingsListView: View {
     let buildings: [Building]
     var body: some View {
-        ScrollView {
+//        ScrollView {
             NavigationStack {
                 List(buildings, id: \.symbol) { building in
                     NavigationLink(destination:
                     BuildingView(building: building)){
                     BuildingCardView(building: building)
                     }
+                    
                     .listRowBackground(BuildingTheme.backgroundColor(buildingType: building.type))
                 }
                 .navigationTitle("AGH Campus")
@@ -43,7 +44,7 @@ struct BuildingsListView: View {
                     .accessibilityLabel("New Building")
                 }
             }
-        }
+//        }
     }
 }
 
