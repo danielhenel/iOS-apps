@@ -22,97 +22,79 @@ enum BuildingType: String {
 
 struct Building {
     let symbol: String
-    let officialName: String?
-    let buildingImage: Image
-    let buildingMap: Image
-    let address: String
-    let buildingDescription: String
-    let hasWiFi: Bool
-    let accessibilityForWheelchairs: AccessibilityStatus
-    let shape: [MKPolygon]
-    let type: BuildingType
-    let favourite: Bool?
+    let name: String
+    let wifi: Bool
+    let wheelchair: AccessibilityStatus
+    let floors: Int
+    let street: String
+    let houseNumber: String
+    let postcode: String
+    let city: String
+    let description: String
+    let type: String
+    let polygon: [MKPolygon]
+    let image: String
+    
+    enum CodingKeys: String, CodingKey {
+        case symbol
+        case name
+        case wifi
+        case wheelchair
+        case floors
+        case street
+        case houseNumber
+        case postcode
+        case city
+        case description
+        case type
+        case polygon
+        case image
+    }
+    
 }
 
-struct BuildingData {
-    static let buildings: [Building] = [
-        Building(
-            symbol: "U-11",
-            officialName: "Basen AGH",
-            buildingImage: Image("U11"),
-            buildingMap: Image("U11_map"),
-            address: "Jana Buszka 4, 30-150 Kraków",
-            buildingDescription: "Basen AGH to miejsce rekreacji i sportu znajdujące się na terenie Akademii Górniczo-Hutniczej w Krakowie.",
-            hasWiFi: false,
-            accessibilityForWheelchairs: .yes,
-            shape: [MKPolygon()],
-            type: .sport_object,
-            favourite: false
-            ),
-        Building(
-            symbol: "A-0",
-            officialName: "Budynek glowny",
-            buildingImage: Image("A0"),
-            buildingMap: Image("A0_map"),
-            address: "Mickiewicza 30",
-            buildingDescription: "Budynek Główny uwieńczony jest figurą Św. Barbary na dachu.",
-            hasWiFi: true,
-            accessibilityForWheelchairs: .yes,
-            shape: [MKPolygon()],
-            type: .auditorium,
-            favourite: true
-        ),
-        Building(
-            symbol: "B-2",
-            officialName: "Wydzial EAIiIB",
-            buildingImage: Image("B2"),
-            buildingMap: Image("B2_map"),
-            address: "Kościuszki 15",
-            buildingDescription: "B-2 to nowoczesny obiekt, który oferuje przestronne sale wykladowe. Znajduje się w dogodnej lokalizacji w centrum miasta.",
-            hasWiFi: true,
-            accessibilityForWheelchairs: .no,
-            shape: [MKPolygon()],
-            type: .auditorium,
-            favourite: false
-        ),
-        Building(
-            symbol: "C-3",
-            officialName: "Budynek miedzywydzialowy",
-            buildingImage: Image("C3"),
-            buildingMap: Image("C3_map"),
-            address: "Nowa 5",
-            buildingDescription: "C-3 to stylowy obiekt, który oferuje przestronne sale wykladowe.",
-            hasWiFi: false,
-            accessibilityForWheelchairs: .limited,
-            shape: [MKPolygon()],
-            type: .auditorium,
-            favourite: true
-        ),
-        Building(
-            symbol: "D-17",
-            officialName: "Centrum Informatyki",
-            buildingImage: Image("D17"),
-            buildingMap: Image("D17_map"),
-            address: "Kawiory 21",
-            buildingDescription: "Centrum Informatyki jest nowoczesnym budykiem, wyposażonym w najnowsze techologie.",
-            hasWiFi: true,
-            accessibilityForWheelchairs: .yes,
-            shape: [MKPolygon()],
-            type: .labolatory,
-            favourite: false
-        ),
-        Building(
-            symbol: "DS-14",
-            officialName: "Dom Studencki Kapitol",
-            buildingImage: Image("DS14"),
-            buildingMap: Image("DS14_map"),
-            address: "Nowa 5",
-            buildingDescription: "Legendarny akademik w samym centrum miasteczka studenckiego.",
-            hasWiFi: false,
-            accessibilityForWheelchairs: .no,
-            shape: [MKPolygon()],
-            type: .student_dormitory,
-            favourite: true
-        )
-    ]
+
+extension Building: Decodable {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        symbol = try values.decode(String.self, forKey: .symbol)
+        name = try values.decode(String.self, forKey: .name)
+        wifi = try values.decode(Bool.self, forKey: .wifi)
+       // wheelchair = try values.decode(Double.self, forKey: .wheelchair)
+        floors = try values.decode(Int.self, forKey: .floors)
+        street = try values.decode(String.self, forKey: .street)
+        houseNumber = try values.decode(String.self, forKey: .houseNumber)
+        postcode = try values.decode(String.self, forKey: .postcode)
+        city = try values.decode(String.self, forKey: .city)
+        description = try values.decode(String.self, forKey: .description)
+//        type = try values.decode(Double.self, forKey: .type)
+//        polygon = try values.decode(Double.self, forKey: .polygon)
+//        image = try values.decode(Double.self, forKey: .image)
+        
+//        let additionalInfo = try values.nestedContainer(keyedBy: AdditionalInfoKeys.self, forKey: .additionalInfo)
+//        elevation = try additionalInfo.decode(Double.self, forKey: .elevation)
+    }
+}
+
+
+extension Building: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(symbol, forKey: .symbol)
+        try container.encode(name, forKey: .name)
+        try container.encode(wifi, forKey: .wifi)
+    //    try container.encode(wheelchair, forKey: .wheelchair)
+        try container.encode(floors, forKey: .floors)
+        try container.encode(street, forKey: .street)
+        try container.encode(houseNumber, forKey: .houseNumber)
+        try container.encode(postcode, forKey: .postcode)
+        try container.encode(city, forKey: .city)
+        try container.encode(description, forKey: .description)
+        try container.encode(type, forKey: .type)
+       // try container.encode(polygon, forKey: .polygon)
+        try container.encode(image, forKey: .image)
+        
+//        var additionalInfo = container.nestedContainer(keyedBy: AdditionalInfoKeys.self, forKey: .additionalInfo)
+//        try additionalInfo.encode(elevation, forKey: .elevation)
+    }
 }
