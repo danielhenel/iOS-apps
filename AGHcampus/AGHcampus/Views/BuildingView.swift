@@ -7,19 +7,40 @@ struct BuildingView: View {
 //        ScrollView {
             VStack {
                 // Building Image
-//                AsyncImage(url: URL(string: building.image))
+                
+//                if let url = building.imageURL{
+//                    Text(url)}//                
+                AsyncImage(url: URL(string: building.imageURL ?? "")) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFit()
+                    case .failure:
+                        Text("FAILURE")
+//                        Image(systemName: "photo")
+//                            .resizable()
+//                            .scaledToFit()
+                    @unknown default:
+                        EmptyView()
+                    }}
 ////                    .resizable()
 //                    .frame(width: 400, height: 200)
+                
                 // Symbol
                 Text(building.symbol)
                     .font(.title)
                     .padding()
+                
                 // Official Name
-//                if let name = building.name {
-//                    Text(name)
-//                        .font(.title)
-//                        .padding()
-//                }
+                if let name = building.name {
+                    Text(name)
+                        .font(.title)
+                        .padding()
+                }
+                
                 // Address
                 Text(building.street + building.houseNumber + building.city)
                     .font(.subheadline)
@@ -32,7 +53,7 @@ struct BuildingView: View {
 
                 // Accessibility for wheel chairs
                 if building.wheelchair == .limited {
-                    Image("figure.roll")
+                    Image(systemName: "figure.roll")
                         .foregroundColor(.gray)
                         .frame(width:20, height: 20)
                         .padding()

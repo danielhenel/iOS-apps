@@ -16,7 +16,7 @@ struct Building {
     let description: String
     let type: String
     let polygon: [Coordinate]
-    let image: String?
+    let imageURL: String?
     
     enum AccessibilityStatus: String, Codable {
         case limited
@@ -42,7 +42,7 @@ struct Building {
         case description
         case type
         case polygon
-        case image
+        case imageURL
     }
 }
 
@@ -61,7 +61,7 @@ extension Building: Encodable {
         try container.encode(description, forKey: .description)
         try container.encode(type, forKey: .type)
         try container.encode(polygon, forKey: .polygon)
-        try container.encode(image, forKey: .image)
+        try container.encode(imageURL, forKey: .imageURL)
     }
 }
 
@@ -80,7 +80,7 @@ extension Building: Decodable {
         description = try values.decode(String.self, forKey: .description)
         type = try values.decode(String.self, forKey: .type)
         polygon = try values.decode([Coordinate].self, forKey: .polygon)
-        image = try values.decodeIfPresent(String.self, forKey: .image)
+        imageURL = try values.decodeIfPresent(String.self, forKey: .imageURL)
     }
 }
 
