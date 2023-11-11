@@ -5,7 +5,7 @@ import MapKit
 
 struct Building {
     let symbol: String
-    let name: String
+    let name: String?
     let wifi: Bool
     let wheelchair: AccessibilityStatus
     let floors: Int
@@ -14,24 +14,14 @@ struct Building {
     let postcode: String
     let city: String
     let description: String
-    let type: BuildingType
+    let type: String
     let polygon: [Coordinate]
-    let image: String
+    let image: String?
     
     enum AccessibilityStatus: String, Codable {
         case limited
         case yes
         case no
-    }
-
-    enum BuildingType: String, Codable {
-        case auditorium = "Auditorium"
-        case student_dormitory = "Student Dormitory"
-        case office = "Office"
-        case other = "Other"
-        case laboratory = "Laboratory"
-        case sport_object = "Sport Object"
-        case library = "Library"
     }
     
     struct Coordinate: Codable {
@@ -79,7 +69,7 @@ extension Building: Decodable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         symbol = try values.decode(String.self, forKey: .symbol)
-        name = try values.decode(String.self, forKey: .name)
+        name = try values.decodeIfPresent(String.self, forKey: .name)
         wifi = try values.decode(Bool.self, forKey: .wifi)
         wheelchair = try values.decode(AccessibilityStatus.self, forKey: .wheelchair)
         floors = try values.decode(Int.self, forKey: .floors)
@@ -88,14 +78,12 @@ extension Building: Decodable {
         postcode = try values.decode(String.self, forKey: .postcode)
         city = try values.decode(String.self, forKey: .city)
         description = try values.decode(String.self, forKey: .description)
-        type = try values.decode(BuildingType.self, forKey: .type)
+        type = try values.decode(String.self, forKey: .type)
         polygon = try values.decode([Coordinate].self, forKey: .polygon)
-        image = try values.decode(String.self, forKey: .image)
+        image = try values.decodeIfPresent(String.self, forKey: .image)
     }
 }
 
-
-import Foundation
 
 class DataManager {
     static let shared = DataManager()
@@ -105,7 +93,6 @@ class DataManager {
     private init() {
         loadData()
         
-        // Zapisywanie danych w chwili przejścia do stanu nieaktywności
         NotificationCenter.default.addObserver(self, selector: #selector(saveData), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
@@ -128,12 +115,10 @@ class DataManager {
     }
     
     private func loadData() {
-        // Sprawdź, czy plik JSON istnieje w lokalnym katalogu dokumentów
         if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let archiveURL = documentsDirectory.appendingPathComponent("data.json")
             
             if FileManager.default.fileExists(atPath: archiveURL.path) {
-                // Jeżeli plik istnieje, odczytaj dane z pliku
                 do {
                     let jsonData = try Data(contentsOf: archiveURL)
                     let decoder = JSONDecoder()
@@ -144,13 +129,11 @@ class DataManager {
                 }
             }
         }
-        
-        // Jeżeli plik nie istnieje lub odczyt z pliku zakończył się błędem, pobierz dane z API
         fetchDataFromAPI()
     }
     
     private func fetchDataFromAPI() {
-        guard let url = URL(string: "URL_TO_YOUR_API_ENDPOINT") else {
+        guard let url = URL(string: "https://tools.sokoloowski.pl/pum-api/") else {
             print("Invalid API URL")
             return
         }
@@ -164,18 +147,18 @@ class DataManager {
             do {
                 let decoder = JSONDecoder()
                 self.data = try decoder.decode([Building].self, from: data)
-                
-                // Po pobraniu danych, zapisz je lokalnie
                 self.saveData()
             } catch {
-                print("Error decoding data from API: \(error.localizedDescription)")
+                print("Error decoding data from API: \(error)")
             }
         }.resume()
     }
 }
 
-// Użycie DataManager
-let dataManager = DataManager.shared
-let buildings = dataManager.getData()
-// Korzystaj z danych buildings, które mogą pochodzić z pliku lub API
+struct BuildingData{
+    static let shared = BuildingData()
+    
+    static let dataManager = DataManager.shared
+    static let buildings = dataManager.getData()
+}
 

@@ -7,19 +7,19 @@ struct BuildingView: View {
 //        ScrollView {
             VStack {
                 // Building Image
-                AsyncImage(url: URL(string: building.image))
-//                    .resizable()
-                    .frame(width: 400, height: 200)
+//                AsyncImage(url: URL(string: building.image))
+////                    .resizable()
+//                    .frame(width: 400, height: 200)
                 // Symbol
                 Text(building.symbol)
                     .font(.title)
                     .padding()
                 // Official Name
-                if let name = building.name {
-                    Text(name)
-                        .font(.title)
-                        .padding()
-                }
+//                if let name = building.name {
+//                    Text(name)
+//                        .font(.title)
+//                        .padding()
+//                }
                 // Address
                 Text(building.street + building.houseNumber + building.city)
                     .font(.subheadline)
@@ -85,8 +85,8 @@ struct BuildingView: View {
 }
 
 struct BuildingView_Previews: PreviewProvider {
-//    static var example_building = BuildingData.buildings[0]
-//    static var previews: some View {
-//        BuildingView(building: example_building)
-//    }
+    static var example_building = BuildingData.buildings[0]
+    static var previews: some View {
+        BuildingView(building: example_building)
+    }
 }

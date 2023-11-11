@@ -15,19 +15,19 @@ struct BuildingCardView: View {
                 .accessibilityAddTraits(.isHeader)
             HStack {
                 // Official name (if exists)
-                if let name = building.officialName{
+                if let name = building.name{
                     Text(name)
                         .font(.headline)
                         .accessibilityAddTraits(.isHeader)
                 }
                 
                 // Accessibility for wheel chairs
-                if building.accessibilityForWheelchairs == .limited {
+                if building.wheelchair == .limited {
                     Image("figure.roll")
                         .foregroundColor(.gray)
                         .frame(width:20, height: 20)
                         .padding()
-                } else if building.accessibilityForWheelchairs == .yes {
+                } else if building.wheelchair == .yes {
                     Image(systemName: "figure.roll")
                         .foregroundColor(.black)
                         .frame(width:20, height: 20)
@@ -35,7 +35,7 @@ struct BuildingCardView: View {
                 }
                 
                 // Wi-Fi
-                if building.hasWiFi {
+                if building.wifi {
                     Image(systemName: "wifi")
                         .foregroundColor(.gray)
                         .frame(width:20, height: 20)
@@ -48,20 +48,20 @@ struct BuildingCardView: View {
                 }
                 
                 // Favourite
-                if let favourite = building.favourite {
-                    if favourite {
-                        Image(systemName: "heart.fill")
-                            .foregroundColor(.gray)
-                            .frame(width:20, height: 20)
-                            .padding()
-                    }
-                    else {
-                        Image(systemName: "heart")
-                            .foregroundColor(.black)
-                            .frame(width:20, height: 20)
-                            .padding()
-                    }
-                }
+//                if let favourite = building.favourite {
+//                    if favourite {
+//                        Image(systemName: "heart.fill")
+//                            .foregroundColor(.gray)
+//                            .frame(width:20, height: 20)
+//                            .padding()
+//                    }
+//                    else {
+//                        Image(systemName: "heart")
+//                            .foregroundColor(.black)
+//                            .frame(width:20, height: 20)
+//                            .padding()
+//                    }
+//                }
             }
             .font(.caption)
         }
