@@ -94,3 +94,88 @@ extension Building: Decodable {
     }
 }
 
+
+import Foundation
+
+class DataManager {
+    static let shared = DataManager()
+    
+    private var data: [Building] = []
+    
+    private init() {
+        loadData()
+        
+        // Zapisywanie danych w chwili przejścia do stanu nieaktywności
+        NotificationCenter.default.addObserver(self, selector: #selector(saveData), name: UIApplication.willResignActiveNotification, object: nil)
+    }
+    
+    func getData() -> [Building] {
+        return data
+    }
+    
+    @objc private func saveData() {
+        do {
+            let encoder = JSONEncoder()
+            let jsonData = try encoder.encode(data)
+            
+            if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                let archiveURL = documentsDirectory.appendingPathComponent("data.json")
+                try jsonData.write(to: archiveURL, options: .noFileProtection)
+            }
+        } catch {
+            print("Error saving data: \(error.localizedDescription)")
+        }
+    }
+    
+    private func loadData() {
+        // Sprawdź, czy plik JSON istnieje w lokalnym katalogu dokumentów
+        if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let archiveURL = documentsDirectory.appendingPathComponent("data.json")
+            
+            if FileManager.default.fileExists(atPath: archiveURL.path) {
+                // Jeżeli plik istnieje, odczytaj dane z pliku
+                do {
+                    let jsonData = try Data(contentsOf: archiveURL)
+                    let decoder = JSONDecoder()
+                    data = try decoder.decode([Building].self, from: jsonData)
+                    return
+                } catch {
+                    print("Error loading data from file: \(error.localizedDescription)")
+                }
+            }
+        }
+        
+        // Jeżeli plik nie istnieje lub odczyt z pliku zakończył się błędem, pobierz dane z API
+        fetchDataFromAPI()
+    }
+    
+    private func fetchDataFromAPI() {
+        guard let url = URL(string: "URL_TO_YOUR_API_ENDPOINT") else {
+            print("Invalid API URL")
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let self = self, let data = data, error == nil else {
+                print("Error fetching data from API: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                self.data = try decoder.decode([Building].self, from: data)
+                
+                // Po pobraniu danych, zapisz je lokalnie
+                self.saveData()
+            } catch {
+                print("Error decoding data from API: \(error.localizedDescription)")
+            }
+        }.resume()
+    }
+}
+
+// Użycie DataManager
+let dataManager = DataManager.shared
+let buildings = dataManager.getData()
+// Korzystaj z danych buildings, które mogą pochodzić z pliku lub API
+
