@@ -15,7 +15,7 @@ struct Building {
     let city: String
     let description: String
     let type: BuildingType
-    let polygon: [MKPolygon]
+    let polygon: [Coordinate]
     let image: String
     
     enum AccessibilityStatus: String, Codable {
@@ -32,6 +32,11 @@ struct Building {
         case laboratory = "Laboratory"
         case sport_object = "Sport Object"
         case library = "Library"
+    }
+    
+    struct Coordinate: Codable {
+        let lat: Double
+        let lon: Double
     }
     
     enum CodingKeys: String, CodingKey {
@@ -84,7 +89,7 @@ extension Building: Decodable {
         city = try values.decode(String.self, forKey: .city)
         description = try values.decode(String.self, forKey: .description)
         type = try values.decode(BuildingType.self, forKey: .type)
-        polygon = try values.decode([MKPolygon].self, forKey: .polygon)
+        polygon = try values.decode([Coordinate].self, forKey: .polygon)
         image = try values.decode(String.self, forKey: .image)
     }
 }
