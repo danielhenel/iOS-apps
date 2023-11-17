@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		292E3A4A2AE6DFBC00105E79 /* BuildingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292E3A492AE6DFBC00105E79 /* BuildingsData.swift */; };
+		29601D782B06FCA700ADFC87 /* BuildingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29601D772B06FCA700ADFC87 /* BuildingMapView.swift */; };
 		2970D26B2AE70E2900AFC233 /* SourceOfTruth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970D26A2AE70E2900AFC233 /* SourceOfTruth.swift */; };
 		2970D26D2AE70F0500AFC233 /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970D26C2AE70F0500AFC233 /* BuildingView.swift */; };
 		AC09B68A2AD93AB700DCE6D3 /* BuildingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC09B6892AD93AB700DCE6D3 /* BuildingsList.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		292E3A492AE6DFBC00105E79 /* BuildingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsData.swift; sourceTree = "<group>"; };
+		29601D772B06FCA700ADFC87 /* BuildingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingMapView.swift; sourceTree = "<group>"; };
 		2970D26A2AE70E2900AFC233 /* SourceOfTruth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceOfTruth.swift; sourceTree = "<group>"; };
 		2970D26C2AE70F0500AFC233 /* BuildingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
 		AC09B6892AD93AB700DCE6D3 /* BuildingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsList.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				2970D26C2AE70F0500AFC233 /* BuildingView.swift */,
 				AC09B6892AD93AB700DCE6D3 /* BuildingsList.swift */,
 				ACEF29CF2AE26EFA0082D1C5 /* BuildingCardView.swift */,
+				29601D772B06FCA700ADFC87 /* BuildingMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				292E3A4A2AE6DFBC00105E79 /* BuildingsData.swift in Sources */,
 				2970D26B2AE70E2900AFC233 /* SourceOfTruth.swift in Sources */,
 				ACBF30C42ACFFB2E009562D2 /* AGHcampusApp.swift in Sources */,
+				29601D782B06FCA700ADFC87 /* BuildingMapView.swift in Sources */,
 				ACEF29D02AE26EFA0082D1C5 /* BuildingCardView.swift in Sources */,
 				ACBF30D02ACFFB2F009562D2 /* AGHcampus.xcdatamodeld in Sources */,
 				AC09B68A2AD93AB700DCE6D3 /* BuildingsList.swift in Sources */,

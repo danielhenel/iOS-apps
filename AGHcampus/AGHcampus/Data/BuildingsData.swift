@@ -17,6 +17,7 @@ struct Building {
     let type: String
     let polygon: [Coordinate]
     let imageURL: String?
+    let favorite: Bool?
     
     enum AccessibilityStatus: String, Codable {
         case limited
@@ -43,6 +44,7 @@ struct Building {
         case type
         case polygon
         case imageURL
+        case favorite
     }
 }
 
@@ -62,6 +64,7 @@ extension Building: Encodable {
         try container.encode(type, forKey: .type)
         try container.encode(polygon, forKey: .polygon)
         try container.encode(imageURL, forKey: .imageURL)
+        try container.encode(imageURL, forKey: .favorite)
     }
 }
 
@@ -81,6 +84,7 @@ extension Building: Decodable {
         type = try values.decode(String.self, forKey: .type)
         polygon = try values.decode([Coordinate].self, forKey: .polygon)
         imageURL = try values.decodeIfPresent(String.self, forKey: .imageURL)
+        favorite = try values.decodeIfPresent(Bool.self, forKey: .favorite)
     }
 }
 

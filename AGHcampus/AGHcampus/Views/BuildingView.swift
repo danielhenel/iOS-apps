@@ -1,4 +1,5 @@
 import SwiftUI
+import MapKit
 
 struct BuildingView: View {
     let building: Building
@@ -78,30 +79,31 @@ struct BuildingView: View {
                 }
 
                 // Favourite
-//                if let favourite = building.favourite {
-//                    if favourite {
-//                        Image(systemName: "heart.fill")
-//                            .foregroundColor(.gray)
-//                            .frame(width:20, height: 20)
-//                            .padding()
-//                    }
-//                    else {
-//                        Image(systemName: "heart")
-//                            .foregroundColor(.black)
-//                            .frame(width:20, height: 20)
-//                            .padding()
-//                    }
-//                }
+                if let favorite = building.favorite {
+                    if favorite {
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.gray)
+                            .frame(width:20, height: 20)
+                            .padding()
+                    }
+                    else {
+                        Image(systemName: "heart")
+                            .foregroundColor(.black)
+                            .frame(width:20, height: 20)
+                            .padding()
+                    }
+                }
+                else{
+                    Image(systemName: "heart")
+                        .foregroundColor(.black)
+                        .frame(width:20, height: 20)
+                        .padding()
+                }
 
                 // Map
-//                building.buildingMap
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(height: 200)
-//                    .padding()
+                BuildingMapView(building: building)
             }
             .padding(10)
-//        }
     }
 }
 
