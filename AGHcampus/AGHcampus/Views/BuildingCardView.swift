@@ -47,21 +47,27 @@ struct BuildingCardView: View {
                         .padding()
                 }
                 
-                // Favourite
-//                if let favourite = building.favourite {
-//                    if favourite {
-//                        Image(systemName: "heart.fill")
-//                            .foregroundColor(.gray)
-//                            .frame(width:20, height: 20)
-//                            .padding()
-//                    }
-//                    else {
-//                        Image(systemName: "heart")
-//                            .foregroundColor(.black)
-//                            .frame(width:20, height: 20)
-//                            .padding()
-//                    }
-//                }
+                 // Favourite
+                if let favorite = building.favorite {
+                    if favorite {
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.gray)
+                            .frame(width:20, height: 20)
+                            .padding()
+                    }
+                    else {
+                        Image(systemName: "heart")
+                            .foregroundColor(.black)
+                            .frame(width:20, height: 20)
+                            .padding()
+                    }
+                }
+                else {
+                    Image(systemName: "heart")
+                        .foregroundColor(.black)
+                        .frame(width:20, height: 20)
+                        .padding()
+                }
             }
             .font(.caption)
         }
