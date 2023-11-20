@@ -25,27 +25,47 @@ struct BuildingTheme {
 
 struct BuildingsListView: View {
     @ObservedObject var sourceOfTruth = SourceOfTruth.shared
+    @State private var isShowingAlert = false // Dodaj @State
+
     var body: some View {
-//        ScrollView {
+        NavigationView {
             NavigationStack {
                 List(sourceOfTruth.buildings, id: \.symbol) { building in
-                    NavigationLink(destination:
-                    BuildingView(building: building)){
-                    BuildingCardView(building: building)
+                    NavigationLink(destination: BuildingView(building: building)) {
+                        BuildingCardView(building: building)
                     }
                     .listRowBackground(BuildingTheme.backgroundColor(buildingType: building.type))
                 }
                 .navigationTitle("AGH Campus")
-//                .toolbar {
-//                    Button(action: {}) {
-//                        Image(systemName: "plus")
-//                    }
-//                    .accessibilityLabel("New Building")
-//                }
             }
-//        }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        isShowingAlert = true // Ustawienie flagi pokazania alertu
+                    }) {
+                        Image(systemName: "arrow.clockwise.circle")
+                    }
+                }
+            }
+        }
+        .alert(isPresented: $isShowingAlert) {
+            Alert(
+                title: Text("Uwaga!"),
+                message: Text("Aktualne dane zostaną nadpisane. Czy na pewno chcesz odświeżyć dane?"),
+                primaryButton: .destructive(Text("OK")) {
+                    DataManager.shared.fetchDataFromAPI()
+                    isShowingAlert = false
+                },
+                secondaryButton: .cancel(Text("Anuluj")) {
+                    isShowingAlert = false // Zamknięcie alertu
+                }
+            )
+        }
     }
 }
+
+
+
 
 
 struct BuildingsListView_Previews: PreviewProvider {

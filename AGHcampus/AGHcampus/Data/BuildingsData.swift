@@ -146,7 +146,7 @@ class DataManager {
         fetchDataFromAPI()
     }
     
-    private func fetchDataFromAPI() {
+    public func fetchDataFromAPI() {
         guard let url = URL(string: "https://tools.sokoloowski.pl/pum-api/") else {
             print("Invalid API URL")
             return
