@@ -17,7 +17,7 @@ struct Building {
     let type: String
     let polygon: [Coordinate]
     let imageURL: String?
-    let favorite: Bool?
+    var favorite: Bool?
     
     enum AccessibilityStatus: String, Codable {
         case limited
@@ -104,14 +104,23 @@ class DataManager {
         return data
     }
     
+    func toggleFavorite(for buildingSymbol: String) {
+        if let index = data.firstIndex(where: { $0.symbol == buildingSymbol }) {
+            data[index].favorite = !(data[index].favorite ?? false) // Odwrócenie stanu ulubionego
+            saveData()
+            SourceOfTruth.shared.buildings = data
+        }
+    }
+    
     @objc private func saveData() {
         do {
             let encoder = JSONEncoder()
             let jsonData = try encoder.encode(data)
             
             if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                let archiveURL = documentsDirectory.appendingPathComponent("data.json")
+                let archiveURL = documentsDirectory.appendingPathComponent("data_agh_campsus_app_dh2000.json")
                 try jsonData.write(to: archiveURL, options: .noFileProtection)
+                print("[success] saveData to: \(archiveURL)")
             }
         } catch {
             print("Error saving data: \(error.localizedDescription)")
@@ -120,13 +129,13 @@ class DataManager {
     
     private func loadData() {
         if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let archiveURL = documentsDirectory.appendingPathComponent("data.json")
-            
+            let archiveURL = documentsDirectory.appendingPathComponent("data_agh_campsus_app_dh2000.json")
             if FileManager.default.fileExists(atPath: archiveURL.path) {
                 do {
                     let jsonData = try Data(contentsOf: archiveURL)
                     let decoder = JSONDecoder()
                     data = try decoder.decode([Building].self, from: jsonData)
+                    print("[success] loadData from: \(archiveURL)")
                     return
                 } catch {
                     print(archiveURL)

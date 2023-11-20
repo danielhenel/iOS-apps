@@ -3,14 +3,11 @@ import MapKit
 
 struct BuildingView: View {
     let building: Building
-
+//    @State var buildings: [Building] = DataManager.shared.getData()
     var body: some View {
 //        ScrollView {
             VStack {
                 // Building Image
-                
-//                if let url = building.imageURL{
-//                    Text(url)}//                
                 AsyncImage(url: URL(string: building.imageURL ?? "")) { phase in
                     switch phase {
                     case .empty:
@@ -18,7 +15,7 @@ struct BuildingView: View {
                     case .success(let image):
                         image
                             .resizable()
-                            .scaledToFit()
+                            .frame(width: 400, height: 200)
                     case .failure:
                         Text("FAILURE")
 //                        Image(systemName: "photo")
@@ -27,19 +24,16 @@ struct BuildingView: View {
                     @unknown default:
                         EmptyView()
                     }}
-////                    .resizable()
-//                    .frame(width: 400, height: 200)
                 
                 // Symbol
                 Text(building.symbol)
                     .font(.title)
-                    .padding()
+                    .padding(EdgeInsets(top: 2, leading: 12, bottom: 8, trailing: 12))
                 
                 // Official Name
                 if let name = building.name {
                     Text(name)
                         .font(.title)
-                        .padding()
                 }
                 
                 // Address
@@ -47,57 +41,70 @@ struct BuildingView: View {
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .padding()
-
-                // Description
-                Text(building.description)
-                    .padding()
-
-                // Accessibility for wheel chairs
-                if building.wheelchair == .limited {
-                    Image(systemName: "figure.roll")
-                        .foregroundColor(.gray)
-                        .frame(width:20, height: 20)
-                        .padding()
-                } else if building.wheelchair == .yes {
-                    Image(systemName: "figure.roll")
-                        .foregroundColor(.black)
-                        .frame(width:20, height: 20)
-                        .padding()
-                }
-
-                // Wi-Fi
-                if building.wifi {
-                    Image(systemName: "wifi")
-                        .foregroundColor(.gray)
-                        .frame(width:20, height: 20)
-                        .padding()
-                } else {
-                    Image(systemName: "wifi.slash")
-                        .foregroundColor(.black)
-                        .frame(width:20, height: 20)
-                        .padding()
-                }
-
-                // Favourite
-                if let favorite = building.favorite {
-                    if favorite {
-                        Image(systemName: "heart.fill")
+                ScrollView{
+                    // Description
+                    Text(building.description)
+                    .padding()}.frame(maxHeight: 200)
+                HStack{
+                    // Accessibility for wheel chairs
+                    if building.wheelchair == .limited {
+                        Image(systemName: "figure.roll")
+                            .resizable()
                             .foregroundColor(.gray)
                             .frame(width:20, height: 20)
                             .padding()
-                    }
-                    else {
-                        Image(systemName: "heart")
+                    } else if building.wheelchair == .yes {
+                        Image(systemName: "figure.roll")
+                            .resizable()
                             .foregroundColor(.black)
                             .frame(width:20, height: 20)
                             .padding()
                     }
-                }
-                else{
-                    Image(systemName: "heart")
-                        .foregroundColor(.black)
-                        .frame(width:20, height: 20)
-                        .padding()
+                    
+                    // Wi-Fi
+                    if building.wifi {
+                        Image(systemName: "wifi")
+                            .resizable()
+                            .foregroundColor(.gray)
+                            .frame(width:20, height: 20)
+                            .padding()
+                    } else {
+                        Image(systemName: "wifi.slash")
+                            .resizable()
+                            .foregroundColor(.black)
+                            .frame(width:20, height: 20)
+                            .padding()
+                    }
+                    
+                    // Favourite
+                    Button(action: {
+                        DataManager.shared.toggleFavorite(for: building.symbol)
+                    })
+                    {
+                        if let favorite = building.favorite {
+                            if favorite {
+                                Image(systemName: "heart.fill")
+                                    .resizable()
+                                    .foregroundColor(.gray)
+                                    .frame(width:20, height: 20)
+                                    .padding()
+                            }
+                            else {
+                                Image(systemName: "heart")
+                                    .resizable()
+                                    .foregroundColor(.black)
+                                    .frame(width:20, height: 20)
+                                    .padding()
+                            }
+                        }
+                        else{
+                            Image(systemName: "heart")
+                                .resizable()
+                                .foregroundColor(.black)
+                                .frame(width:20, height: 20)
+                                .padding()
+                        }
+                    }
                 }
 
                 // Map
@@ -108,7 +115,7 @@ struct BuildingView: View {
 }
 
 struct BuildingView_Previews: PreviewProvider {
-    static var example_building = BuildingData.buildings[0]
+    static var example_building = DataManager.shared.getData()[0]
     static var previews: some View {
         BuildingView(building: example_building)
     }

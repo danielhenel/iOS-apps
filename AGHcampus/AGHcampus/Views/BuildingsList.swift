@@ -24,32 +24,32 @@ struct BuildingTheme {
 }
 
 struct BuildingsListView: View {
-    let buildings: [Building]
+    @ObservedObject var sourceOfTruth = SourceOfTruth.shared
     var body: some View {
 //        ScrollView {
             NavigationStack {
-                List(buildings, id: \.symbol) { building in
+                List(sourceOfTruth.buildings, id: \.symbol) { building in
                     NavigationLink(destination:
                     BuildingView(building: building)){
                     BuildingCardView(building: building)
                     }
-                    
                     .listRowBackground(BuildingTheme.backgroundColor(buildingType: building.type))
                 }
                 .navigationTitle("AGH Campus")
-                .toolbar {
-                    Button(action: {}) {
-                        Image(systemName: "plus")
-                    }
-                    .accessibilityLabel("New Building")
-                }
+//                .toolbar {
+//                    Button(action: {}) {
+//                        Image(systemName: "plus")
+//                    }
+//                    .accessibilityLabel("New Building")
+//                }
             }
 //        }
     }
 }
 
+
 struct BuildingsListView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildingsListView(buildings: BuildingData.buildings)
+        BuildingsListView()
     }
 }
