@@ -64,7 +64,7 @@ extension Building: Encodable {
         try container.encode(type, forKey: .type)
         try container.encode(polygon, forKey: .polygon)
         try container.encode(imageURL, forKey: .imageURL)
-        try container.encode(imageURL, forKey: .favorite)
+        try container.encode(favorite, forKey: .favorite)
     }
 }
 
@@ -129,6 +129,7 @@ class DataManager {
                     data = try decoder.decode([Building].self, from: jsonData)
                     return
                 } catch {
+                    print(archiveURL)
                     print("Error loading data from file: \(error.localizedDescription)")
                 }
             }
