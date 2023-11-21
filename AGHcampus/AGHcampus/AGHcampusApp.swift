@@ -7,7 +7,7 @@ struct AGHcampusApp: App {
     var body: some Scene {
        
         WindowGroup {
-            BuildingsListView()
+           ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
         
