@@ -3,9 +3,7 @@ import MapKit
 
 struct BuildingView: View {
     let building: Building
-//    @State var buildings: [Building] = DataManager.shared.getData()
     var body: some View {
-//        ScrollView {
             VStack {
                 // Building Image
                 AsyncImage(url: URL(string: building.imageURL ?? "")) { phase in
@@ -17,10 +15,7 @@ struct BuildingView: View {
                             .resizable()
                             .frame(width: 400, height: 200)
                     case .failure:
-                        Text("FAILURE")
-//                        Image(systemName: "photo")
-//                            .resizable()
-//                            .scaledToFit()
+                        Text("NO IMAGE")
                     @unknown default:
                         EmptyView()
                     }}
